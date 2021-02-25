@@ -45,8 +45,6 @@ public class JwtProvider {
                 .compact();
     }
 
-
-    //TODO: remove
     /**
      * Returns the user id encapsulated within the token
      */

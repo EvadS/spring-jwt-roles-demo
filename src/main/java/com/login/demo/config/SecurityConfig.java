@@ -69,17 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/api/super-admin/*").hasRole("SUPER_ADMIN")
-//                .antMatchers("/api/admin/*").hasAnyRole("ADMIN", "SUPER_ADMIN")
-//                .antMatchers("/api/user/*").hasAnyRole("ADMIN", "USER","SUPER_ADMIN")
-//
-//                .antMatchers(SWAGGER_UI_URL).permitAll()
-//
-//                .antMatchers("/api/auth/register/**").permitAll()
-//                .antMatchers("/api/auth/auth/**").permitAll()
-                // TODO: for test
-                // index page
-               /// .antMatchers(HttpMethod.GET, "/").permitAll()
 
                 .antMatchers("/logins").permitAll()
                 .antMatchers("/register").permitAll()
@@ -89,7 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/super-admin*").hasRole("SUPER_ADMIN")
 
                 .antMatchers(SWAGGER_UI_URL).permitAll()
-
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }

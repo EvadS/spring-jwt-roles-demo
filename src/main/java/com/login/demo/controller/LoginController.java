@@ -2,6 +2,7 @@ package com.login.demo.controller;
 
 import com.login.demo.config.CookieUtil;
 import com.login.demo.config.CustomUserDetails;
+import com.login.demo.config.LoginConstant;
 import com.login.demo.config.jwt.JwtProvider;
 import com.login.demo.exception.UserLoginException;
 import com.login.demo.service.UserService;
@@ -21,11 +22,6 @@ import java.util.Optional;
 
 @Controller
 public class LoginController {
-
-    // TODO: move to constant
-    private static final String jwtTokenCookieName = "JWT-TOKEN";
-
-
     private final UserService userService;
     private final JwtProvider jwtProvider;
     private final AuthenticationManager authenticationManager;
@@ -57,7 +53,7 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwtToken = jwtProvider.generateToken(customUserDetails);
-        CookieUtil.create(httpServletResponse, jwtTokenCookieName, jwtToken, false, -1, "localhost");
+        CookieUtil.create(httpServletResponse, LoginConstant.JWT_TOKEN_NAME, jwtToken, false, -1, "localhost");
 
         return "redirect:" + redirectDependOffUserRole(customUserDetails);
     }
