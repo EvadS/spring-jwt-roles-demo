@@ -12,4 +12,9 @@ public class BeansConfiguration {
     public JwtConfig jwtConfig() {
         return new JwtConfig();
     }
+
+    @Bean
+    public StartupRunner StartupRunner() {
+        return new StartupRunner();
+    }
 }
