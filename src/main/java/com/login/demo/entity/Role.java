@@ -31,6 +31,10 @@ public class Role {
         return null != this && (this.role.equals(RoleName.ROLE_ADMIN) || this.role.equals(RoleName.ROLE_SUPER_ADMIN));
     }
 
+    public boolean isSuperAdminRole() {
+        return null != this && this.role.equals(RoleName.ROLE_SUPER_ADMIN);
+    }
+
     public Role() {
     }
 

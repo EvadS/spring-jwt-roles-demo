@@ -1,24 +1,15 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <p>password per each : <b>123456</b></p>
-    <p>the current users </p>
-    <lu>
-        <li>user@mail.com</li>
-        <li>super-admin@mail.com</li>
-        <li>user@mail.com</li>
-    </lu>
-    <hr/>
-
-    <form method="POST" action="/login?redirect=${RequestParameters.redirect!}">
-        <h2>Log in</h2>
+    <form method="POST" action="/register">
+        <h2>register</h2>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label"> User email:</label>
             <div class="col-sm-6">
-                <input type="email" name="username" value="username"
+                <input type="email" name="email" value="email"
                        class="form-control"
-                       placeholder="User name"/>
+                       placeholder="User email"/>
             </div>
         </div>
 
@@ -33,7 +24,7 @@
         <br/>
 
         <button class="btn btn-primary" type="submit">
-            Log In
-        </button>
+            Register
+       </button>
     </form>
 </@c.page>

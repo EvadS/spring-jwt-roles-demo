@@ -5,6 +5,7 @@ import com.login.demo.config.jwt.JwtConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class BeansConfiguration {
 
@@ -17,4 +18,6 @@ public class BeansConfiguration {
     public StartupRunner StartupRunner() {
         return new StartupRunner();
     }
+
 }
+

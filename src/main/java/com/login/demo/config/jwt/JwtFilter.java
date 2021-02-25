@@ -26,8 +26,8 @@ import java.util.Optional;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
+    private static final String jwtTokenCookieName = "JWT-TOKEN";
 
-    public static final String AUTHORIZATION = "Authorization";
     private final Logger log = LoggerFactory.getLogger(JwtFilter.class);
     private final JwtConfig jwtConfig;
 
@@ -44,10 +44,10 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest servletRequest, HttpServletResponse servletResponse,
                                     FilterChain filterChain) throws ServletException, IOException {
-        try {
-            //HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
-            String jwt = resolveToken(servletRequest);
+
+        try {
+            String  jwt  = jwtProvider.getJwtFromServletRequest(servletRequest, jwtTokenCookieName);
 
             if (StringUtils.hasText(jwt) && this.jwtProvider.validateToken(jwt)) {
                 Long userId = jwtProvider.getUserIdFromJWT(jwt);
@@ -69,14 +69,4 @@ public class JwtFilter extends OncePerRequestFilter {
             ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
-
-
-    private String resolveToken(HttpServletRequest request){
-        String bearerToken = request.getHeader(jwtConfig.getHeader());
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
-        }
-        return null;
-    }
-
 }

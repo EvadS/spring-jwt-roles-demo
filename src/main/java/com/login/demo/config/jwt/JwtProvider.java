@@ -1,5 +1,6 @@
 package com.login.demo.config.jwt;
 
+import com.login.demo.config.CookieUtil;
 import com.login.demo.config.CustomUserDetails;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.Date;
 
@@ -43,6 +45,8 @@ public class JwtProvider {
                 .compact();
     }
 
+
+    //TODO: remove
     /**
      * Returns the user id encapsulated within the token
      */
@@ -54,6 +58,17 @@ public class JwtProvider {
 
         return Long.parseLong(claims.getSubject());
     }
+
+
+    public String getJwtFromServletRequest(HttpServletRequest servletRequest, String jwtTokenCookieName) {
+        String token = CookieUtil.getValue(servletRequest, jwtTokenCookieName);
+
+        if(token == null) return null;
+
+        return token;
+    }
+
+
 
     public boolean validateToken(String token) {
         try {
