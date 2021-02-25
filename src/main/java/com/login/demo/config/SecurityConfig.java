@@ -79,9 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/*").hasAnyRole("ADMIN", "USER","SUPER_ADMIN")
 
                 .antMatchers(SWAGGER_UI_URL).permitAll()
-                .antMatchers("/register").permitAll()
 
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/api/auth/register/**").permitAll()
+                .antMatchers("/api/auth/auth/**").permitAll()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }

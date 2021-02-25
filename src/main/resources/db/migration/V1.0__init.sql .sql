@@ -8,7 +8,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `user` (
-  `user_id` bigint(20) NOT NULL,
+  `user_id` bigint(20)NOT NULL AUTO_INCREMENT,
   `is_active` bit(1) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `is_email_verified` bit(1) NOT NULL,
